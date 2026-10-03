@@ -1,5 +1,6 @@
 import requests
 from datetime import datetime
+from datetime import timedelta
 from datetime import timezone
 from time import sleep
 
@@ -14,7 +15,9 @@ class F1getter:
 
     def get_next_race(self):
         current_year = self.current_year_as_string()
-        current_week_date = datetime.today().replace(day=datetime.today().day - datetime.today().weekday()).strftime('%Y-%m-%d')
+        print(datetime.today().weekday())
+        print(datetime.today().day)
+        current_week_date = (datetime.today() - timedelta(days=datetime.today().weekday())).strftime('%Y-%m-%d')
         url = f"{self.base_url}meetings?year={current_year}&date_start>={current_week_date}"
         response = requests.get(url)
         if response.status_code == 200:

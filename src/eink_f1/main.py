@@ -48,6 +48,8 @@ def get_next_race_and_next_session(f1_api):
                 "session_info": next_session,
             })
 
+            return output
+
         else:
             print("No upcoming sessions found for the race.")
     else:
